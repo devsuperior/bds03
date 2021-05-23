@@ -27,16 +27,16 @@ public class DepartmentControllerIT {
 	@Autowired
 	private TokenUtil tokenUtil;
 	
-	private String employeeUsername;
-	private String employeePassword;
+	private String operatorUsername;
+	private String operatorPassword;
 	private String adminUsername;
 	private String adminPassword;
 	
 	@BeforeEach
 	void setUp() throws Exception {
 		
-		employeeUsername = "ana@gmail.com";
-		employeePassword = "123456";
+		operatorUsername = "ana@gmail.com";
+		operatorPassword = "123456";
 		adminUsername = "bob@gmail.com";
 		adminPassword = "123456";
 	}
@@ -60,7 +60,7 @@ public class DepartmentControllerIT {
 	@Test
 	public void findAllShouldReturnAllResourcesSortedByNameWhenEmployeeLogged() throws Exception {
 		
-		String accessToken = tokenUtil.obtainAccessToken(mockMvc, employeeUsername, employeePassword);
+		String accessToken = tokenUtil.obtainAccessToken(mockMvc, operatorUsername, operatorPassword);
 		
 		ResultActions result =
 				mockMvc.perform(get("/departments")
