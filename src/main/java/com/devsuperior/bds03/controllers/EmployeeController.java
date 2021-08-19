@@ -35,7 +35,11 @@ public class EmployeeController {
 	}
 	
 	@PostMapping
+<<<<<<< HEAD
 	public ResponseEntity<EmployeeDTO> insert(@Valid @RequestBody EmployeeDTO dto) {
+=======
+	public ResponseEntity<EmployeeDTO> insert(@RequestBody @Valid EmployeeDTO dto) {
+>>>>>>> e86b783781f59ad361e28764d7ea73cc3d8a2ed1
 		dto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(dto.getId()).toUri();

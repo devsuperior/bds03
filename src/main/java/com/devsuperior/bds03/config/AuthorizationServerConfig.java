@@ -14,11 +14,16 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 @Configuration
+<<<<<<< HEAD
 @EnableAuthorizationServer 
+=======
+@EnableAuthorizationServer
+>>>>>>> e86b783781f59ad361e28764d7ea73cc3d8a2ed1
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
 	@Value("${security.oauth2.client.client-id}")
 	private String clientId;
+<<<<<<< HEAD
 
 	@Value("${security.oauth2.client.client-secret}")
 	private String clientSecret;
@@ -35,6 +40,24 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Autowired
 	private JwtTokenStore tokenStore;
 
+=======
+	
+	@Value("${security.oauth2.client.client-secret}")
+	private String clientSecret;
+	
+	@Value("${jwt.duration}")
+	private Integer jwtDuration;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private JwtAccessTokenConverter accessTokenConverter;
+	
+	@Autowired
+	private JwtTokenStore tokenStore;
+	
+>>>>>>> e86b783781f59ad361e28764d7ea73cc3d8a2ed1
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
@@ -45,19 +68,36 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+<<<<<<< HEAD
 		clients.inMemory().withClient(clientId) 
 				.secret(passwordEnconder.encode(clientSecret)) 
 				.scopes("read", "write") 
 				.authorizedGrantTypes("password") 
 				.accessTokenValiditySeconds(jwtDuration);
+=======
+		clients.inMemory()
+		.withClient(clientId)
+		.secret(passwordEncoder.encode(clientSecret))
+		.scopes("read", "write")
+		.authorizedGrantTypes("password")
+		.accessTokenValiditySeconds(jwtDuration);
+>>>>>>> e86b783781f59ad361e28764d7ea73cc3d8a2ed1
 	}
 
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+<<<<<<< HEAD
 
 		endpoints.authenticationManager(authenticationManager)
 				.tokenStore(tokenStore)
 				.accessTokenConverter(accessTokenConverter);
 	}
 
+=======
+		
+		endpoints.authenticationManager(authenticationManager)
+		.tokenStore(tokenStore)
+		.accessTokenConverter(accessTokenConverter);
+	}
+>>>>>>> e86b783781f59ad361e28764d7ea73cc3d8a2ed1
 }
