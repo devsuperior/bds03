@@ -10,12 +10,30 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_role")
+<<<<<<< HEAD
+public class Role implements Serializable{
+	
+	/**
+	 * 
+	 */
+=======
 public class Role implements Serializable {
+>>>>>>> e86b783781f59ad361e28764d7ea73cc3d8a2ed1
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+<<<<<<< HEAD
+	
+	private String authority;
+	
+	public Role() {
+
+	}
+
+	public Role(Long id, String authority) {
+=======
 	private String authority;
 	
 	public Role() {
@@ -23,6 +41,7 @@ public class Role implements Serializable {
 
 	public Role(Long id, String authority) {
 		super();
+>>>>>>> e86b783781f59ad361e28764d7ea73cc3d8a2ed1
 		this.id = id;
 		this.authority = authority;
 	}
@@ -39,10 +58,13 @@ public class Role implements Serializable {
 		return authority;
 	}
 
+<<<<<<< HEAD
+=======
 	public void setAuthority(String authority) {
 		this.authority = authority;
 	}
 
+>>>>>>> e86b783781f59ad361e28764d7ea73cc3d8a2ed1
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -67,4 +89,10 @@ public class Role implements Serializable {
 			return false;
 		return true;
 	}
+<<<<<<< HEAD
+
+	
+	
+=======
+>>>>>>> e86b783781f59ad361e28764d7ea73cc3d8a2ed1
 }

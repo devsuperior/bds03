@@ -13,6 +13,26 @@ import com.devsuperior.bds03.repositories.UserRepository;
 
 @Service
 public class UserService implements UserDetailsService {
+<<<<<<< HEAD
+	
+	private static Logger logger = LoggerFactory.getLogger(UserService.class);
+	
+	@Autowired
+	private UserRepository repository;
+	
+	
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		User user = repository.findByEmail(username);
+
+		if (user == null) {
+			logger.error("User not found " + username);
+			throw new UsernameNotFoundException("Email not found");
+		}
+		logger.info("User found " + username);
+		return user;
+
+=======
 
 	private static Logger logger = LoggerFactory.getLogger(UserService.class);
 
@@ -29,5 +49,6 @@ public class UserService implements UserDetailsService {
 		}
 		logger.info("User found: " + username);
 		return user;
+>>>>>>> e86b783781f59ad361e28764d7ea73cc3d8a2ed1
 	}
 }

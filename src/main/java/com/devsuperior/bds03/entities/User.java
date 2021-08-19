@@ -6,7 +6,10 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+<<<<<<< HEAD
+=======
 import javax.persistence.Column;
+>>>>>>> e86b783781f59ad361e28764d7ea73cc3d8a2ed1
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -24,12 +27,38 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Entity
 @Table(name = "tb_user")
 public class User implements UserDetails, Serializable {
+<<<<<<< HEAD
+	
+	/**
+	 * 
+	 */
+=======
+>>>>>>> e86b783781f59ad361e28764d7ea73cc3d8a2ed1
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+<<<<<<< HEAD
+	private String email;
+	
+	private String password;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(
+			name = "tb_user_role",
+			joinColumns = @JoinColumn(name = "user_id"),
+			inverseJoinColumns = @JoinColumn(name = "role_id")
+	)
+	private Set<Role> roles = new HashSet<>();
+	
+	public User() {
+
+	}
+	
+	public User(Long id, String email, String password) {
+=======
 	@Column(unique = true)
 	private String email;
 	private String password;
@@ -45,6 +74,7 @@ public class User implements UserDetails, Serializable {
 
 	public User(Long id, String email, String password) {
 		super();
+>>>>>>> e86b783781f59ad361e28764d7ea73cc3d8a2ed1
 		this.id = id;
 		this.email = email;
 		this.password = password;
@@ -73,7 +103,11 @@ public class User implements UserDetails, Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+<<<<<<< HEAD
+
+=======
 	
+>>>>>>> e86b783781f59ad361e28764d7ea73cc3d8a2ed1
 	public Set<Role> getRoles() {
 		return roles;
 	}
@@ -105,32 +139,60 @@ public class User implements UserDetails, Serializable {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
+<<<<<<< HEAD
+		// TODO Auto-generated method stub
+=======
+>>>>>>> e86b783781f59ad361e28764d7ea73cc3d8a2ed1
 		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getAuthority()))
 				.collect(Collectors.toList());
 	}
 
 	@Override
 	public String getUsername() {
+<<<<<<< HEAD
+		// TODO Auto-generated method stub
+=======
+>>>>>>> e86b783781f59ad361e28764d7ea73cc3d8a2ed1
 		return email;
 	}
 
 	@Override
 	public boolean isAccountNonExpired() {
+<<<<<<< HEAD
+		// TODO Auto-generated method stub
+=======
+>>>>>>> e86b783781f59ad361e28764d7ea73cc3d8a2ed1
 		return true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
+<<<<<<< HEAD
+		// TODO Auto-generated method stub
+=======
+>>>>>>> e86b783781f59ad361e28764d7ea73cc3d8a2ed1
 		return true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
+<<<<<<< HEAD
+		// TODO Auto-generated method stub
+=======
+>>>>>>> e86b783781f59ad361e28764d7ea73cc3d8a2ed1
 		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
+<<<<<<< HEAD
+		// TODO Auto-generated method stub
 		return true;
 	}
+	
+	
+=======
+		return true;
+	}
+>>>>>>> e86b783781f59ad361e28764d7ea73cc3d8a2ed1
 }
