@@ -20,6 +20,7 @@ public class EmployeeDTO implements Serializable {
 	private String email;
 	
 	@NotNull(message = "Campo requerido")
+
 	private Long departmentId;
 	
 	public EmployeeDTO() {

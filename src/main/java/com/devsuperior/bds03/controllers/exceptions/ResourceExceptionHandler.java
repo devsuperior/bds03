@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class ResourceExceptionHandler {
-	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<ValidationError> validation(MethodArgumentNotValidException e, HttpServletRequest request) {
 		HttpStatus status = HttpStatus.UNPROCESSABLE_ENTITY;
@@ -30,4 +29,5 @@ public class ResourceExceptionHandler {
 		
 		return ResponseEntity.status(status).body(err);
 	}	
+
 }
