@@ -12,13 +12,15 @@ public class EmployeeDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
-	@NotBlank(message="Campo requerido")
+	
+	@NotBlank(message = "Campo requerido")
 	private String name;
 	
-	@Email(message="Email invalido")
+	@Email(message = "Email inválido")
 	private String email;
 	
-	@NotNull(message="Campo requerido")
+	@NotNull(message = "Campo requerido")
+
 	private Long departmentId;
 	
 	public EmployeeDTO() {

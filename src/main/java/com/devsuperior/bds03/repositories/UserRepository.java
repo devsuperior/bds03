@@ -7,5 +7,4 @@ import com.devsuperior.bds03.entities.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 
 	User findByEmail(String email);
-	
 }

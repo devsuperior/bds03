@@ -17,15 +17,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
-
-	@Autowired
-	private UserDetailsService userDetailService;
 	
+	@Autowired
+	private UserDetailsService userDetailsService;
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
 
-		auth.userDetailsService(userDetailService).passwordEncoder(passwordEncoder);
 	}
 
 	@Override
@@ -36,9 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	@Bean
 	protected AuthenticationManager authenticationManager() throws Exception {
-		// TODO Auto-generated method stub
 		return super.authenticationManager();
 	}
-	
-	
+
 }

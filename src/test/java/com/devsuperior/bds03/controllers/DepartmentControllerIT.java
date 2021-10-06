@@ -58,7 +58,7 @@ public class DepartmentControllerIT {
 	}
 	
 	@Test
-	public void findAllShouldReturnAllResourcesSortedByNameWhenEmployeeLogged() throws Exception {
+	public void findAllShouldReturnAllResourcesSortedByNameWhenOperatorLogged() throws Exception {
 		
 		String accessToken = tokenUtil.obtainAccessToken(mockMvc, operatorUsername, operatorPassword);
 		

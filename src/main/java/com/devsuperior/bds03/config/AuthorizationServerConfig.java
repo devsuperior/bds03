@@ -23,24 +23,21 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Value("${security.oauth2.client.client-secret}")
 	private String clientSecret;
 	
-	@Value("${jwt.duration}")	
+	@Value("${jwt.duration}")
 	private Integer jwtDuration;
-	
-	
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
-	@Autowired 
+	@Autowired
 	private JwtAccessTokenConverter accessTokenConverter;
 	
 	@Autowired
 	private JwtTokenStore tokenStore;
 	
 	@Autowired
-	private AuthenticationManager  authenticationManager;
-	
-	
+	private AuthenticationManager authenticationManager;
+
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
 		security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
@@ -49,24 +46,19 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 
-		clients.inMemory()
+    clients.inMemory()
 		.withClient(clientId)
 		.secret(passwordEncoder.encode(clientSecret))
-		.scopes("read","write")
+		.scopes("read", "write")
 		.authorizedGrantTypes("password")
-		.accessTokenValiditySeconds(jwtDuration)
-		;
-		
+		.accessTokenValiditySeconds(jwtDuration);
 	}
 
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-	
-		
 		endpoints.authenticationManager(authenticationManager)
 		.tokenStore(tokenStore)
-		.accessTokenConverter(accessTokenConverter)
-		;
+		.accessTokenConverter(accessTokenConverter);
 	}
 
 }

@@ -9,16 +9,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tb_role")
-public class Role implements Serializable{
-
+@Table(name = "tb_role")
+public class Role implements Serializable {
 	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String authority;
 	
-	public Role() {}
+	public Role() {
+	}
 
 	public Role(Long id, String authority) {
 		super();
@@ -66,9 +67,4 @@ public class Role implements Serializable{
 			return false;
 		return true;
 	}
-
-
-	
-	
-	
 }
