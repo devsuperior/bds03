@@ -20,37 +20,35 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	private static final String [] PUBLIC = {"/h2-console/**","/oauth/token"};
 	
 	// rotas liberadas para admin e operador
-	private static final String [] ADMIM_OR_OPERATOR = {"/products/**", "/categories/**"};
+	private static final String [] OPERATOR_GET = {"/departments/**", "/employees/**"};
 	
 	private static final String [] ADMINISTRATOR = {"/users/**"}; 
 		
 	@Autowired
-	private Environment environment; // É o ambiente de execução da aplicação
+	private Environment environment; 
 	
 	@Autowired
-	private JwtTokenStore tokenStore;
-		
-	//método para o ResourceServer verificar se o token fornecido é valido
+	private JwtTokenStore tokenStore;		
+
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
 		
 		resources.tokenStore(tokenStore);
 	}
 	
-	// configurar as rotas do http
+	
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		
-		//config para liberar acesso ao h2-console
+		
 		if (Arrays.asList(environment.getActiveProfiles()).contains("test")==true) {
 			http.headers().frameOptions().disable();
 		}
 		
 		http.authorizeRequests()
 		.antMatchers(PUBLIC).permitAll()
-		.antMatchers(HttpMethod.GET, ADMIM_OR_OPERATOR).permitAll()	//liberar para todos apenas consultas GET
-		.antMatchers(ADMINISTRATOR).hasRole("ADMIN")
-		.anyRequest().authenticated(); // para acessar qualquer outra rota não espeficicada tem que estar logado
+		.antMatchers(HttpMethod.GET,OPERATOR_GET).hasAnyRole("OPERATOR","ADMIN")			
+		.anyRequest().hasAnyRole("ADMIN");
 	}	
 
 }
