@@ -70,6 +70,8 @@ public class EmployeeControllerIT {
 		EmployeeDTO dto = new EmployeeDTO(null, "Joaquim", "joaquim@gmail.com", 1L);
 		String jsonBody = objectMapper.writeValueAsString(dto);
 		
+		// without passing the token in the header api has to give unauthorized access
+		
 		ResultActions result =
 				mockMvc.perform(post("/employees")
 					.content(jsonBody)
