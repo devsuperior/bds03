@@ -36,7 +36,7 @@ public class User implements Serializable, UserDetails {
 	private String email;
 	private String password;
 	
-	@ManyToMany(fetch = FetchType.EAGER) // forçar sempre que buscar um usuario no banco, via vir os roles (regras) junto
+	@ManyToMany(fetch = FetchType.EAGER) 
 	@JoinTable(name= "tb_user_role",
 	joinColumns = @JoinColumn(name = "user_id"),
 	inverseJoinColumns = @JoinColumn(name = "role_id"))	
@@ -108,9 +108,8 @@ public class User implements Serializable, UserDetails {
 	}
 
 	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
+	public Collection<? extends GrantedAuthority> getAuthorities() {		
 		
-		// transformar cada elemento do tipo role para Granted Authority
 		return this.roles.stream().map((role) -> new SimpleGrantedAuthority(role.getAuthority()))
 				.collect(Collectors.toList());
 		
@@ -124,7 +123,7 @@ public class User implements Serializable, UserDetails {
 
 	@Override
 	public boolean isAccountNonExpired() {
-		//não tem prazo para expirar as contas
+		
 		return true;
 	}
 
