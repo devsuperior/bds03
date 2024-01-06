@@ -24,10 +24,13 @@ import com.devsuperior.bds03.services.EmployeeService;
 @RequestMapping(value = "/employees")
 public class EmployeeController {
 
-	@Autowired
-	private EmployeeService service;
-	
-	@GetMapping
+	private final EmployeeService service;
+
+    public EmployeeController(EmployeeService service) {
+        this.service = service;
+    }
+
+    @GetMapping
 	public ResponseEntity<Page<EmployeeDTO>> findAll(Pageable pageable) {
 		PageRequest pageRequest = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by("name"));
 		Page<EmployeeDTO> list = service.findAll(pageRequest);		

@@ -7,8 +7,8 @@ import com.devsuperior.bds03.entities.Department;
 public class DepartmentDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	public Long id;
-	public String name;
+	private Long id;
+	private String name;
 	
 	public DepartmentDTO() {
 	}
